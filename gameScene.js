@@ -5,11 +5,12 @@ var ball;
 var ballSize = 10;
 var ballSpeed = 7;
 var wallTop, wallBottom, wallLeft, wallRight;
-var wallThickness = 300;
+var wallThickness = 200;
 var bricks;
 var lives = 3;
 var livesabstand = 50;
 var livesgroesse = 20;
+var item;
 
 var gameScene;
 
