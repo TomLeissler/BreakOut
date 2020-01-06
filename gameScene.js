@@ -53,10 +53,16 @@ function setupGameScene() {
     gameScene.add(wallRight);
     gameScene.add(wallLeft);
 
-    // Brickfield
-    createBrickfield(3, 7, 70, 20, 20, 35);
 }
 
+function initGameScene() {
+    lives = 5;
+    ball.setVelocity(0, 0);
+    createBrickfield(3, 7, 70, 20, 20, 35);
+    gameRunning = false;
+    mouseIsPressed = false;
+    noCursor();
+}
 
 function drawGameScene() {
     paddle.position.x = mouseX;
@@ -67,12 +73,10 @@ function drawGameScene() {
         ball.setSpeed(ballSpeed, ball.getDirection() + xdiff / 2);
     }
 
-
     ball.bounce(wallTop);
     ball.bounce(wallBottom, bottomWallHit);
     ball.bounce(wallLeft);
     ball.bounce(wallRight);
-
 
     if (mouseIsPressed && gameRunning == false) {
         gameRunning = true;
@@ -83,9 +87,7 @@ function drawGameScene() {
     drawSprites(gameScene);
     drawLives();
     if (lives == 0) {
-        //gameScene = menuScene;
-        gameState = 2;
-        cursor();
+        changeGameState(GameStates.GAME_OVER);
     }
 }
 

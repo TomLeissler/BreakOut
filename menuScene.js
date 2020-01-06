@@ -8,6 +8,11 @@ function setupMenuScene() {
     menuScene.add(buttonStart);
 }
 
+function initMenuScene() {
+    gameRunning = false;
+    mouseIsPressed = false;
+    cursor();
+}
 
 function drawMenuScene() {
     background(100);
@@ -15,12 +20,7 @@ function drawMenuScene() {
     textSize(30);
     text("MENU", 200, 100);
     if (buttonStart.mouseIsPressed) {
-        gameState = 1;
-        lives = 5;
-        createBrickfield(3, 7, 70, 20, 20, 35);
-        gameRunning = false;
-        mouseIsPressed = false;
-        noCursor();
+        changeGameState(GameStates.GAME);
     }
 
     drawSprites(menuScene);

@@ -3,6 +3,13 @@ var CanvasHeight = 700;
 var gameRunning;
 var gameState;
 
+const GameStates = {
+    MENU: 0,
+    GAME: 1,
+    GAME_OVER: 2,
+    STAGE_OVER: 3,
+  }
+
 //--------------------------------------------------------------------------------------------------------
 
 function setup() {
@@ -19,21 +26,37 @@ function setup() {
 
 //--------------------------------------------------------------------------------------------------------
 
-
-
 function draw() {
-    if (gameState == 0) {
+    if (gameState == GameStates.MENU) {
         drawMenuScene();
     }
-    if (gameState == 1) {
+    if (gameState == GameStates.GAME) {
         drawGameScene();
     }
-    if (gameState == 2) {
+    if (gameState == GameStates.GAME_OVER) {
         drawGameOverScene();
     }
-    if (gameState == 3) {
-        drawGameWonScene();
+    if (gameState == GameStates.STAGE_OVER) {
+        //drawGameWonScene();
     }
+}
+
+
+function changeGameState(newState) {
+    if (newState == GameStates.MENU) {
+        initMenuScene()
+    }
+    if (newState == GameStates.GAME) {
+        initGameScene();
+    }
+    if (newState == GameStates.GAME_OVER) {
+        initGameOverScene();
+    }
+    if (newState == GameStates.STAGE_OVER) {
+        //initStageOverScene();
+    }
+
+    gameState = newState;
 }
 
 //--------------------------------------------------------------------------------------------------------

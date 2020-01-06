@@ -8,6 +8,9 @@ function setupGameOverScene() {
     gameOverScene.add(buttonRetry);
 }
 
+function initGameOverScene() {
+    cursor();
+}
 
 function drawGameOverScene() {
     background(255, 0, 0);
@@ -16,10 +19,7 @@ function drawGameOverScene() {
     text("Back to menu", 100, 100);
 
     if (buttonRetry.mouseIsPressed && buttonRetry.mouseIsOver) {
-        gameState = 0;
-        gameRunning = false;
-        mouseIsPressed = false;
-        cursor();
+        changeGameState(GameStates.MENU);
     }
 
     drawSprites(gameOverScene);
