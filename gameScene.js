@@ -85,6 +85,7 @@ function drawGameScene() {
     if (lives == 0) {
         //gameScene = menuScene;
         gameState = 2;
+        cursor();
     }
 }
 

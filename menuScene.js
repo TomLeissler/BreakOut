@@ -20,6 +20,7 @@ function drawMenuScene() {
         createBrickfield(3, 7, 70, 20, 20, 35);
         gameRunning = false;
         mouseIsPressed = false;
+        noCursor();
     }
 
     drawSprites(menuScene);

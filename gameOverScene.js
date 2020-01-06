@@ -19,6 +19,7 @@ function drawGameOverScene() {
         gameState = 0;
         gameRunning = false;
         mouseIsPressed = false;
+        cursor();
     }
 
     drawSprites(gameOverScene);
