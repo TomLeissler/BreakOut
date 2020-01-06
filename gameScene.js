@@ -10,7 +10,6 @@ var bricks;
 var lives = 3;
 var livesabstand = 50;
 var livesgroesse = 20;
-var item;
 
 var gameScene;
 

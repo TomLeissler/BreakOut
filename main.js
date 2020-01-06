@@ -15,7 +15,6 @@ function setup() {
     setupMenuScene();
     setupGameScene();
     setupGameOverScene();
-
 }
 
 //--------------------------------------------------------------------------------------------------------
@@ -35,11 +34,10 @@ function draw() {
     if (gameState == 3) {
         drawGameWonScene();
     }
-
 }
 
 //--------------------------------------------------------------------------------------------------------
-
+/*
 function drawGameWonScene() {
     let congrats = 'CONGRATULATIONS';
     background(100);
@@ -47,5 +45,5 @@ function drawGameWonScene() {
     text(c, width / 2 - textWidth(c), height / 2);
     fill(0, 102, 153);
 }
-
+*/
 //--------------------------------------------------------------------------------------------------------
