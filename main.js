@@ -7,8 +7,8 @@ const GameStates = {
     MENU: 0,
     GAME: 1,
     GAME_OVER: 2,
-    STAGE_OVER: 3,
-  }
+    STAGE_CLEAR: 3,
+}
 
 //--------------------------------------------------------------------------------------------------------
 
@@ -22,6 +22,7 @@ function setup() {
     setupMenuScene();
     setupGameScene();
     setupGameOverScene();
+    setupStageClearScene();
 }
 
 //--------------------------------------------------------------------------------------------------------
@@ -36,8 +37,8 @@ function draw() {
     if (gameState == GameStates.GAME_OVER) {
         drawGameOverScene();
     }
-    if (gameState == GameStates.STAGE_OVER) {
-        //drawGameWonScene();
+    if (gameState == GameStates.STAGE_CLEAR) {
+        drawStageClearScene();
     }
 }
 
@@ -58,15 +59,3 @@ function changeGameState(newState) {
 
     gameState = newState;
 }
-
-//--------------------------------------------------------------------------------------------------------
-/*
-function drawGameWonScene() {
-    let congrats = 'CONGRATULATIONS';
-    background(100);
-    textSize(90);
-    text(c, width / 2 - textWidth(c), height / 2);
-    fill(0, 102, 153);
-}
-*/
-//--------------------------------------------------------------------------------------------------------

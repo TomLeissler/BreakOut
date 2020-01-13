@@ -10,13 +10,17 @@ var bricks;
 var lives = 3;
 var livesabstand = 50;
 var livesgroesse = 20;
+var score = 0;
 
 var gameScene;
 
+
 function setupGameScene() {
+    var img = loadImage('paddletexture.png');
 
     // Paddle
     paddle = createSprite(width / 2, height - 50, paddleWidth, paddleHeight);
+    paddle.addImage(img);
     paddle.shapeColor = color(255);
     paddle.immovable = true;
     gameScene.add(paddle);
@@ -57,8 +61,9 @@ function setupGameScene() {
 
 function initGameScene() {
     lives = 5;
+    score = 0;
     ball.setVelocity(0, 0);
-    createBrickfield(3, 7, 70, 20, 20, 35);
+    createBrickfield(5, 10, 50, 20, 10, 25);
     gameRunning = false;
     mouseIsPressed = false;
     noCursor();
@@ -71,6 +76,8 @@ function drawGameScene() {
     if (ball.bounce(paddle)) {
         let xdiff = ball.position.x - paddle.position.x;
         ball.setSpeed(ballSpeed, ball.getDirection() + xdiff / 2);
+        mySound.setVolume(1)
+        mySound.play();
     }
 
     ball.bounce(wallTop);
@@ -89,6 +96,7 @@ function drawGameScene() {
     if (lives == 0) {
         changeGameState(GameStates.GAME_OVER);
     }
+    drawScore();
 }
 
 
@@ -121,9 +129,15 @@ function removeBrick(o1, o2) {
     o2.lives = o2.lives - 1;
     if (o2.lives == 1) {
         o2.shapeColor = o2.shapeColor = color(125, 0, 125);
+        mySound.setVolume(1)
+        mySound.play();
+        score = score + 5;
     }
     if (o2.lives == 0) {
         o2.remove();
+        mySound.setVolume(1)
+        mySound.play();
+        score = score + 10;
     }
     if (bricks.size() == 0) {
         gameState = 3;
@@ -145,4 +159,16 @@ function drawLives() {
         rect(spalte * livesabstand + 50, 10, livesgroesse, livesgroesse);
     }
 
+}
+
+function drawScore() {
+    textSize(20);
+    fill(255, 0, 255);
+    text('Score:' + score, 20, height / 2);
+}
+
+
+function preload() {
+    soundFormats('mp3', 'ogg');
+    mySound = loadSound('bounce.mp3');
 }
