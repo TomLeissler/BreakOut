@@ -1,5 +1,5 @@
 var paddle;
-var paddleWidth = 100;
+var paddleWidth = 110;
 var paddleHeight = 20;
 var ball;
 var ballSize = 10;
@@ -8,16 +8,18 @@ var wallTop, wallBottom, wallLeft, wallRight;
 var wallThickness = 200;
 var bricks;
 var lives = 3;
-var livesabstand = 50;
+var livesabstand = 30;
 var livesgroesse = 20;
 var score = 0;
+
 
 var gameScene;
 
 
 function setupGameScene() {
-    var img = loadImage('paddletexture.png');
 
+    var img = loadImage('textures/paddletexture.png');
+    bg2 = loadImage('textures/gamebackground.png');
     // Paddle
     paddle = createSprite(width / 2, height - 50, paddleWidth, paddleHeight);
     paddle.addImage(img);
@@ -27,10 +29,13 @@ function setupGameScene() {
 
     // Ball
     ball = createSprite(width / 2, height / 2, ballSize * 1.5, ballSize * 1.5);
-
+    // var balltexture = loadImage('textures/balltexture.png');
+    // ball.addImage(balltexture);
     ball.draw = function () {
-        fill(this.shapeColor);
+        fill(200, 200, 200);
         circle(0, 0, this.width);
+        fill(255, 0, 0);
+        circle(0, 0, this.width - 5);
     };
 
     ball.shapeColor = color(255);
@@ -60,10 +65,13 @@ function setupGameScene() {
 }
 
 function initGameScene() {
+    Beat.stop();
+    Beat1.setVolume(1)
+    Beat1.play();
     lives = 5;
     score = 0;
     ball.setVelocity(0, 0);
-    createBrickfield(5, 10, 50, 20, 10, 25);
+    createBrickfield(5, 10, 50, 17, 20, 25);
     gameRunning = false;
     mouseIsPressed = false;
     noCursor();
@@ -78,6 +86,8 @@ function drawGameScene() {
         ball.setSpeed(ballSpeed, ball.getDirection() + xdiff / 2);
         mySound.setVolume(1)
         mySound.play();
+
+
     }
 
     ball.bounce(wallTop);
@@ -116,7 +126,9 @@ function createBrickfield(rows, columns, brickWidth, brickHeight, marginHorizont
             var brick = createSprite(
                 width / 2 - fieldWidth / 2 + brickWidth / 2 + c * (brickWidth + marginHorizontal),
                 height / 5 - fieldHeight / 2 + r * (brickHeight + marginVertical), brickWidth, brickHeight);
-            brick.shapeColor = color(255, 0, 255);
+            var brick1 = loadImage('textures/red.png');
+            brick.addImage(brick1)
+            //    brick.shapeColor = color(255, 0, 255);
             brick.lives = 2;
             brick.immovable = true;
             bricks.add(brick);
@@ -126,9 +138,9 @@ function createBrickfield(rows, columns, brickWidth, brickHeight, marginHorizont
 }
 
 function removeBrick(o1, o2) {
-    o2.lives = o2.lives - 1;
+    o2.lives = o2.lives - 2;
     if (o2.lives == 1) {
-        o2.shapeColor = o2.shapeColor = color(125, 0, 125);
+        //o2.shapeColor = o2.shapeColor = color(125, 0, 125);
         mySound.setVolume(1)
         mySound.play();
         score = score + 5;
@@ -154,21 +166,23 @@ function bottomWallHit(o1, o2) {
 
 function drawLives() {
     for (var spalte = 0; spalte < lives; spalte++) {
+        // var live = createSprite(spalte * livesabstand + 30, 5, livesgroesse, livesgroesse, 3)
+        // var live1 = loadImage('textures/livetexture.png');
+        // live.addImage(live1)
+        // scale = 50 % ;
+        // live.immovable = true;
+        // gameScene.add(live);
+
         noStroke();
-        fill(255, 0, 0);
-        rect(spalte * livesabstand + 50, 10, livesgroesse, livesgroesse);
+        fill(200, 0, 0);
+        rect(spalte * livesabstand + 30, 5, livesgroesse, livesgroesse, 3);
+
     }
 
 }
 
 function drawScore() {
     textSize(20);
-    fill(255, 0, 255);
-    text('Score:' + score, 20, height / 2);
-}
-
-
-function preload() {
-    soundFormats('mp3', 'ogg');
-    mySound = loadSound('bounce.mp3');
+    fill(255, 0, 0);
+    text('Score:' + score, width - 170, 20);
 }

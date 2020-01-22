@@ -59,3 +59,12 @@ function changeGameState(newState) {
 
     gameState = newState;
 }
+
+
+
+function preload() {
+    soundFormats('mp3', 'ogg');
+    mySound = loadSound('sounds/bounce.mp3');
+    Beat = loadSound('sounds/beat1.mp3');
+    Beat1 = loadSound('sounds/beat2.mp3');
+}
