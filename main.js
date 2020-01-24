@@ -12,6 +12,17 @@ const GameStates = {
 
 //--------------------------------------------------------------------------------------------------------
 
+function preload() {
+    soundFormats('mp3', 'ogg');
+    mySound = loadSound('sounds/bounce.mp3');
+    Beat = loadSound('sounds/beat1.mp3');
+    Beat1 = loadSound('sounds/beat2.mp3');
+    ButtonSound = loadSound('sounds/button.mp3');
+}
+
+
+//--------------------------------------------------------------------------------------------------------
+
 function setup() {
     createCanvas(canvasWidth, CanvasHeight);
     gameRunning = false;
@@ -42,6 +53,8 @@ function draw() {
     }
 }
 
+//--------------------------------------------------------------------------------------------------------
+
 
 function changeGameState(newState) {
     if (newState == GameStates.MENU) {
@@ -56,15 +69,6 @@ function changeGameState(newState) {
     if (newState == GameStates.STAGE_OVER) {
         //initStageOverScene();
     }
-
+    mouseIsPressed = false;
     gameState = newState;
-}
-
-
-
-function preload() {
-    soundFormats('mp3', 'ogg');
-    mySound = loadSound('sounds/bounce.mp3');
-    Beat = loadSound('sounds/beat1.mp3');
-    Beat1 = loadSound('sounds/beat2.mp3');
 }
