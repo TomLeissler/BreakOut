@@ -8,7 +8,7 @@ const GameStates = {
     GAME: 1,
     GAME_OVER: 2,
     STAGE_CLEAR: 3,
-}
+};
 
 //--------------------------------------------------------------------------------------------------------
 
@@ -18,6 +18,9 @@ function preload() {
     Beat = loadSound('sounds/beat1.mp3');
     Beat1 = loadSound('sounds/beat2.mp3');
     ButtonSound = loadSound('sounds/button.mp3');
+    Break = loadSound('sounds/break.mp3');
+    Charge = loadSound('sounds/charging.mp3');
+    Breaker = loadSound('sounds/breaker.mp3');
 }
 
 
@@ -49,6 +52,7 @@ function draw() {
         drawGameOverScene();
     }
     if (gameState == GameStates.STAGE_CLEAR) {
+        cursor();
         drawStageClearScene();
     }
 }
@@ -58,7 +62,7 @@ function draw() {
 
 function changeGameState(newState) {
     if (newState == GameStates.MENU) {
-        initMenuScene()
+        initMenuScene();
     }
     if (newState == GameStates.GAME) {
         initGameScene();

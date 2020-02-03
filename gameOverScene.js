@@ -13,6 +13,7 @@ function setupGameOverScene() {
 }
 
 function initGameOverScene() {
+    currentLevel = 0;
     cursor();
 }
 
